@@ -1,0 +1,54 @@
+@import '../../styles/variables';
+
+.sliderSection {
+  padding: 100px 0;
+  overflow: hidden;
+  background-color: $background-light;
+
+  h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 60px;
+    color: #ccc;
+  }
+
+  .sliderContainer {
+    display: flex;
+    gap: 30px;
+    padding: 20px 0;
+    cursor: grab;
+    width: max-content; // Important for draggable
+    
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  .controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+
+    button {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+$primary-color: #000000;
+$secondary-color: #ffffff;
+$accent-color: #1a1a1a;
+$text-color: #333333;
+$background-light: #f9f9f9;
+$background-dark: #121212;
+
+$font-main: var(--font-geist-sans), sans-serif;
+
+$desktop-width: 1920px;
+$laptop-width: 1440px;
+$tablet-width: 1024px;
+$mobile-width: 768px;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin mobile {
+  @media (max-width: #{$mobile-width}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (max-width: #{$laptop-width}) {
+    @content;
+  }
+}

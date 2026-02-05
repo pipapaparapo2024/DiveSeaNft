@@ -1,0 +1,60 @@
+@import '../../styles/variables';
+
+.footer {
+  background-color: $background-dark;
+  color: white;
+  padding: 60px 40px;
+  margin-top: 100px;
+
+  .content {
+    max-width: $desktop-width;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 24px;
+    }
+
+    .links {
+      display: flex;
+      gap: 40px;
+      
+      a {
+        color: #999;
+        transition: color 0.2s;
+        
+        &:hover {
+          color: white;
+        }
+      }
+    }
+  }
+
+  .copyright {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+  }
+
+  @include mobile {
+    .content {
+      flex-direction: column;
+      gap: 30px;
+      
+      .links {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+    }
+  }
+}
