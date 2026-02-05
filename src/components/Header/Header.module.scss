@@ -25,10 +25,27 @@
     gap: 70px;
     width: 100%;
     transition: padding 0.3s ease;
+
+    @include tablet {
+      max-width: 860px;
+      gap: 40px;
+    }
+
+    @include mobile-small {
+      padding: 0 40px;
+      justify-content: space-between;
+      height: 100px; // Maintain height to match padding top/bottom visual
+      align-items: center;
+      gap: 0; // Space between handles it
+    }
   }
 
   &.scrolled .container {
     padding: 20px 20px;
+    
+    @include mobile-small {
+      padding: 20px 40px;
+    }
   }
 
   .logo {
@@ -44,12 +61,29 @@
     img {
       object-fit: contain;
     }
+
+    span {
+      display: none; // Hidden by default (desktop/tablet)
+      
+      @include mobile-small {
+        display: block; // Visible on mobile
+        font-family: $font-main;
+      }
+    }
   }
 
   .nav {
     display: flex;
     gap: 50px;
     margin-right: auto;
+
+    @include tablet {
+      gap: 32px;
+    }
+
+    @include mobile-small {
+      display: none;
+    }
 
     a {
       font-weight: 600;
@@ -71,11 +105,16 @@
     cursor: pointer;
     z-index: 1002; // Above mobile menu
 
+    @include mobile-small {
+      display: flex;
+    }
+
     span {
       width: 25px;
-      height: 2px;
+      height: 3px; // Made bolder (was 2px)
       background-color: $text-color;
       transition: all 0.3s;
+      border-radius: 2px;
     }
 
     &.open {
@@ -137,26 +176,6 @@
         font-weight: 700;
         text-transform: uppercase;
       }
-    }
-  }
-
-  @include mobile {
-    padding: 0;
-    
-    .container {
-      padding: 15px 20px;
-    }
-    
-    &.scrolled .container {
-      padding: 15px 20px;
-    }
-
-    .nav {
-      display: none;
-    }
-
-    .burger {
-      display: flex;
     }
   }
 }

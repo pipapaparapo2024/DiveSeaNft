@@ -40,6 +40,7 @@ export default function Header() {
             priority
             unoptimized
           />
+          <span>DiveSea</span>
         </div>
         
         {/* Desktop Nav */}
