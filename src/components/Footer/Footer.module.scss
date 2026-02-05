@@ -17,9 +17,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: 40px;
-    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 50px;
+    margin-bottom: 0;
 
     @include tablet {
       max-width: 860px;
@@ -86,16 +86,16 @@
     font-size: 14px;
     max-width: 1300px;
     margin: 0 auto;
-    padding: 0 20px;
-    text-align: left;
+    padding: 25px 20px 0;
+    text-align: center;
 
     @include tablet {
       max-width: 860px;
     }
 
     @include mobile-small {
-      padding: 0;
-      text-align: left; // Or center?
+      padding: 25px 0 0;
+      text-align: center;
     }
   }
 }

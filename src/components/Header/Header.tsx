@@ -71,7 +71,7 @@ export default function Header() {
           <Link href="#" onClick={() => setMenuOpen(false)}>Stats</Link>
         </nav>
         <div className={styles.mobileFooter}>
-           <button>Connect Wallet</button>
+           {/* Connect Wallet button removed */}
         </div>
       </div>
     </header>
