@@ -7,7 +7,7 @@ import { fetchNfts } from '@/store/nftsSlice';
 import Card from './Card';
 import styles from './Slider.module.scss';
 import gsap from 'gsap';
-import { Draggable } from 'gsap/Draggable';
+import { Draggable } from 'gsap/all';
 
 // Register Draggable
 gsap.registerPlugin(Draggable);
