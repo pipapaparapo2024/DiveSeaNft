@@ -7,7 +7,13 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.content}>
         <div className={styles.logo}>
-          <Image src="/Logo.svg" alt="DiveSea" width={30} height={30} />
+          <Image 
+            src="/DiveSeaNft/Logo.svg" 
+            alt="DiveSea" 
+            width={30} 
+            height={30} 
+            unoptimized 
+          />
           <span>DiveSea</span>
         </div>
         <div className={styles.links}>

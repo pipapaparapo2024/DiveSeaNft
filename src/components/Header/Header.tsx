@@ -33,11 +33,12 @@ export default function Header() {
       <div className={styles.container}>
         <div className={styles.logo}>
           <Image 
-            src="/Logo.svg" 
+            src="/DiveSeaNft/Logo.svg" 
             alt="DiveSea" 
             width={40} 
             height={40} 
             priority
+            unoptimized
           />
         </div>
         
