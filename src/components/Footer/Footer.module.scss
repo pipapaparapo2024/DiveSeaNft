@@ -40,9 +40,12 @@
   }
 
   .copyright {
-    text-align: center;
     color: #666;
     font-size: 14px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 40px; // Margins left and right
+    text-align: left;
   }
 
   @include mobile {

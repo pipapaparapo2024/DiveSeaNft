@@ -21,7 +21,7 @@ export default function Footer() {
         </div>
       </div>
       <div className={styles.copyright}>
-        © 2023 DiveSea. All rights reserved.
+        © 2023
       </div>
     </footer>
   );
