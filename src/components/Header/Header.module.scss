@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@use '../../styles/variables' as *;
 
 .header {
   position: fixed;
@@ -9,8 +9,9 @@
   z-index: 1000;
   transition: background-color 0.3s ease, padding 0.3s ease;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start; // Align everything to the left
   align-items: center;
+  gap: 10px; // Gap between logo and nav
 
   &.scrolled {
     background-color: rgba(255, 255, 255, 0.95);
@@ -27,7 +28,7 @@
     font-size: 24px;
     color: $primary-color;
     z-index: 1002; // Above mobile menu
-    margin-right: auto; // Push to left if needed, but justify-between handles it
+    margin-right: 0; // Reset margin-right
 
     svg {
       width: 40px; // Slightly larger logo
@@ -38,6 +39,7 @@
   .nav {
     display: flex;
     gap: 40px;
+    margin-right: auto; // Push potential right-side items (if any) to the right
 
     a {
       font-weight: 600;

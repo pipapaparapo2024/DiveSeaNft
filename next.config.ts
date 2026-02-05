@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: 'export',
-  basePath: '/DiveSeaNft',
+  // basePath: '/DiveSeaNft', // Commented out for local development
   images: {
     unoptimized: true,
   },

@@ -31,9 +31,8 @@ export default function Header() {
     <header className={classNames(styles.header, { [styles.scrolled]: scrolled })}>
       <div className={styles.logo}>
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2 12C2 12 5 8 12 8C19 8 22 12 22 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-          <path d="M2 16C2 16 5 12 12 12C19 12 22 16 22 16" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-          <path d="M2 8C2 8 5 4 12 4C19 4 22 8 22 8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+          <path d="M2 12C5 8 9 8 12 12C15 16 19 16 22 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M2 16C5 12 9 12 12 16C15 20 19 20 22 16" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </div>
       

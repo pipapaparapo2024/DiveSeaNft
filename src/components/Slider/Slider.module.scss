@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@use '../../styles/variables' as *;
 
 .sliderSection {
   padding: 100px 0;
@@ -27,32 +27,38 @@
   .controls {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    align-items: center;
     margin-top: 40px;
+    background: white;
+    border-radius: 16px;
+    padding: 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
 
     button {
       width: 60px;
       height: 60px;
-      border-radius: 14px; // Square with rounded corners
-      background: white;
+      background: transparent;
       border: none;
       cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.2s ease;
-      color: #333; // Arrow color
+      color: #333;
+      border-radius: 0;
 
       svg {
         width: 24px;
         height: 24px;
-        stroke-width: 2.5px; // Bolder arrows
+        stroke-width: 2.5px;
       }
 
       &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        background-color: #f5f5f5;
         color: black;
       }
 
@@ -60,6 +66,12 @@
         opacity: 0.5;
         cursor: not-allowed;
       }
+    }
+
+    .divider {
+      width: 1px;
+      height: 30px;
+      background-color: #eee;
     }
   }
 }

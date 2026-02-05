@@ -35,7 +35,7 @@ export default function Hero() {
   return (
     <section className={styles.hero} ref={containerRef}>
       <div className={styles.content}>
-        <div className={styles.subtitle}>Weekly - Top NFT</div>
+        {/* <div className={styles.subtitle}>Weekly - Top NFT</div> */}
         <h1>
           <span>Discover, collect,</span>
           <span>and sell rare NFTs</span>
@@ -47,7 +47,7 @@ export default function Hero() {
           <button className={styles.primary}>Explore</button>
           <button className={styles.secondary}>Create</button>
         </div>
-        <div className={styles.stats}>
+        {/* <div className={styles.stats}>
           <div className={styles.statItem}>
             <h3>32k+</h3>
             <p>Artwork</p>
@@ -60,7 +60,7 @@ export default function Hero() {
             <h3>12k+</h3>
             <p>Creators</p>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className={styles.visuals}>
