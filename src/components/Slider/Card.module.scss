@@ -17,19 +17,30 @@
   @include mobile-small {
     width: 210px;
     height: 300px;
-    padding: 10px; // Reduce padding slightly
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     
     .imageContainer {
-      height: 180px; // Adjust image height to fit
+      height: 160px; // Reduced from 180px to fit content
+      margin-bottom: 10px;
     }
 
     .info {
+       flex-grow: 1;
+       display: flex;
+       flex-direction: column;
+       justify-content: space-between;
+
        h3 {
          font-size: 16px;
-         margin-bottom: 10px;
+         margin-bottom: 5px;
        }
        
        .bidRow {
+         margin-top: auto;
+         
          .button {
            padding: 8px 12px;
            font-size: 10px;
