@@ -24,7 +24,7 @@ export default function Footer() {
         </div>
       </div>
       <div className={styles.copyright}>
-        © 2023 <span className={styles.extraText}>DiveSea All Rights Reserved.</span>
+        © 2023 <span className={styles.fullText}>DiveSea All Rights Reserved.</span>
       </div>
     </footer>
   );

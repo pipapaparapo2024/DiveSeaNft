@@ -12,6 +12,7 @@ $laptop-width: 1440px;
 $tablet-width: 1024px;
 $mobile-width: 768px;
 $mobile-small-width: 600px;
+$footer-width: 860px;
 
 @mixin flex-center {
   display: flex;
@@ -27,6 +28,11 @@ $mobile-small-width: 600px;
 
 @mixin mobile-small {
   @media (max-width: #{$mobile-small-width}) {
+    @content;
+  }
+}
+@mixin footer-width {
+  @media (max-width: #{$footer-width}) {
     @content;
   }
 }
