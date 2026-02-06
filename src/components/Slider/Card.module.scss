@@ -16,7 +16,8 @@
 
   @include mobile-small {
     width: 210px;
-    height: 300px;
+    min-height: 300px; // Allow expansion
+    height: auto;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -25,6 +26,7 @@
     .imageContainer {
       height: 160px; // Reduced from 180px to fit content
       margin-bottom: 10px;
+      flex-shrink: 0; // Prevent image shrinking
     }
 
     .info {

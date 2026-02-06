@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store';
 import { fetchNfts } from '@/store/nftsSlice';
@@ -18,6 +18,7 @@ export default function Slider() {
   const containerRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const draggableInstance = useRef<Draggable[] | null>(null);
+  const [cardWidth, setCardWidth] = useState(310); // Default desktop width + gap (280 + 30)
 
   useEffect(() => {
     if (status === 'idle') {
@@ -25,39 +26,110 @@ export default function Slider() {
     }
   }, [dispatch, status]);
 
+  // Calculate card width on resize
+  useEffect(() => {
+    const handleResize = () => {
+      // Check if mobile (screen width < 600px)
+      // Card width: Mobile 210px, Desktop 280px
+      // Gap: 30px
+      const isMobile = window.matchMedia('(max-width: 600px)').matches;
+      setCardWidth(isMobile ? 240 : 310); // 210+30 or 280+30
+    };
+
+    handleResize(); // Initial
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   useEffect(() => {
     if (status === 'succeeded' && items.length > 0 && containerRef.current) {
-      // Initialize Draggable
+      const totalItems = items.length;
+      const singleSetWidth = totalItems * cardWidth;
+      
+      // Initialize position to the start of the second set (middle)
+      gsap.set(containerRef.current, { x: -singleSetWidth });
+
       const ctx = gsap.context(() => {
         draggableInstance.current = Draggable.create(containerRef.current, {
           type: 'x',
           edgeResistance: 0.65,
-          bounds: wrapperRef.current, // Constrain to wrapper? Or handle infinite logic
           inertia: true,
-          // For simple infinite effect without complex logic, we rely on duplicate items 
-          // and maybe snapping, but full infinite loop with GSAP Draggable is complex.
-          // We will implement a standard slider first.
+          onDrag: function() {
+            wrap(this.x);
+          },
+          onThrowUpdate: function() {
+            wrap(this.x);
+          }
         });
       }, wrapperRef);
+
+      // Wrap function to handle infinite loop
+      const wrap = (x: number) => {
+        const normalizeX = x;
+        // If scrolled past the beginning of the first set (too far right)
+        if (normalizeX > 0) {
+          gsap.set(containerRef.current, { x: normalizeX - singleSetWidth });
+          if (draggableInstance.current && draggableInstance.current[0]) {
+            draggableInstance.current[0].update(); // Update draggable state
+          }
+        }
+        // If scrolled past the end of the third set (too far left)
+        // Actually, we want to keep it within the middle set range roughly
+        // If we go past the end of the second set (-2 * singleSetWidth)
+        else if (normalizeX < -singleSetWidth * 2) {
+           gsap.set(containerRef.current, { x: normalizeX + singleSetWidth });
+           if (draggableInstance.current && draggableInstance.current[0]) {
+            draggableInstance.current[0].update();
+          }
+        }
+      };
       
       return () => ctx.revert();
     }
-  }, [status, items]);
+  }, [status, items, cardWidth]);
 
-  const handlePrev = () => {
-    if (draggableInstance.current && draggableInstance.current[0]) {
-       // Simple move
-       gsap.to(containerRef.current, { x: `+=300`, duration: 0.5 });
-    }
-  };
+  const moveSlider = useCallback((direction: 'prev' | 'next') => {
+    if (!containerRef.current || !items.length) return;
+    
+    const currentX = gsap.getProperty(containerRef.current, "x") as number;
+    const targetX = direction === 'next' ? currentX - cardWidth : currentX + cardWidth;
+    
+    const totalItems = items.length;
+    const singleSetWidth = totalItems * cardWidth;
 
-  const handleNext = () => {
-    if (draggableInstance.current && draggableInstance.current[0]) {
-      gsap.to(containerRef.current, { x: `-=300`, duration: 0.5 });
-    }
-  };
+    gsap.to(containerRef.current, {
+      x: targetX,
+      duration: 0.5,
+      ease: "power2.out",
+      onUpdate: () => {
+         // Check wrap during animation
+         const x = gsap.getProperty(containerRef.current, "x") as number;
+         if (x > 0) {
+            gsap.set(containerRef.current, { x: x - singleSetWidth });
+         } else if (x < -singleSetWidth * 2) {
+            gsap.set(containerRef.current, { x: x + singleSetWidth });
+         }
+      },
+      onComplete: () => {
+         // Final wrap check
+         const finalX = gsap.getProperty(containerRef.current, "x") as number;
+         if (finalX > 0) {
+            gsap.set(containerRef.current, { x: finalX - singleSetWidth });
+         } else if (finalX < -singleSetWidth * 2) {
+            gsap.set(containerRef.current, { x: finalX + singleSetWidth });
+         }
+         // Sync Draggable
+         if (draggableInstance.current && draggableInstance.current[0]) {
+           draggableInstance.current[0].update();
+         }
+      }
+    });
+  }, [items.length, cardWidth]);
 
-  // Mock infinite by tripling items
+  const handlePrev = () => moveSlider('prev');
+  const handleNext = () => moveSlider('next');
+
+  // Triple items for infinite loop
   const displayItems = status === 'succeeded' ? [...items, ...items, ...items] : [];
 
   return (

@@ -5,6 +5,11 @@
   overflow: hidden;
   background-color: $background-light;
 
+  @include mobile-small {
+    padding-top: 50px;
+    padding-bottom: 0; // Remove bottom padding so Footer margin controls the gap
+  }
+
   h2 {
     text-align: center;
     font-size: 36px;
