@@ -5,8 +5,17 @@
   color: white;
   padding: 60px 40px;
   margin-top: 100px;
+  height: 350px; // Desktop default
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @include tablet {
+    height: 250px;
+  }
 
   @include mobile-small {
+    height: auto;
     padding: 50px 30px 45px;
     margin-top: 50px; // Reduced spacing to slider on mobile
   }

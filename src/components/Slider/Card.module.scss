@@ -9,6 +9,9 @@
   transition: transform 0.3s;
   flex-shrink: 0;
   user-select: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &:hover {
     transform: translateY(-10px);
@@ -19,9 +22,6 @@
     min-height: 300px; // Allow expansion
     height: auto;
     padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     
     .imageContainer {
       height: 160px; // Reduced from 180px to fit content

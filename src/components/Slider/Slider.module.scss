@@ -1,12 +1,12 @@
 @use '../../styles/variables' as *;
 
 .sliderSection {
-  padding: 100px 0;
+  padding: 150px 0 100px; // 100px header + 50px gap
   overflow: hidden;
-  background-color: $background-light;
+  background-color: #F1F1F1;
 
   @include mobile-small {
-    padding-top: 50px;
+    padding-top: 130px; // Mobile header is approx 80-100px + gap
     padding-bottom: 0; // Remove bottom padding so Footer margin controls the gap
   }
 
