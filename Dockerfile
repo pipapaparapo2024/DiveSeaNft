@@ -1,23 +1,27 @@
-# Use the official Node.js image as the base image
-FROM node:18-alpine
+# Stage 1: Build
+FROM node:20-alpine AS builder
 
-# Set the working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
-
 # Install dependencies
-RUN npm install
+COPY package.json package-lock.json* ./
+RUN npm ci
 
-# Copy the rest of the application code
+# Copy source code
 COPY . .
 
-# Build the Next.js application
+# Build the project (outputs to /app/out due to output: 'export')
 RUN npm run build
 
-# Expose the port the app runs on
-EXPOSE 3000
+# Stage 2: Serve
+FROM nginx:alpine
 
-# Start the application
-CMD ["npm", "start"]
+# Copy built assets to the subdirectory matching basePath
+# basePath is /DiveSeaNft, so we place files in /usr/share/nginx/html/DiveSeaNft
+COPY --from=builder /app/out /usr/share/nginx/html/DiveSeaNft
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]

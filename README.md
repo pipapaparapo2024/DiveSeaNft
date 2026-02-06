@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DiveSea NFT Project
+
+Responsive NFT marketplace landing page built with Next.js, SCSS Modules, and GSAP.
+
+## Tech Stack
+- **Framework**: Next.js 16 (App Router)
+- **Styling**: SCSS Modules
+- **Animation**: GSAP
+- **State Management**: Redux Toolkit
+- **Deployment**: Static Export (GitHub Pages compatible)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js 18+
+- npm
 
+### Local Development
+
+1.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+2.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+3.  **Open the application:**
+    Visit [http://localhost:3000/DiveSeaNft](http://localhost:3000/DiveSeaNft) in your browser.
+
+## Docker
+
+You can run the application in a container using Docker.
+
+### 1. Build the image
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+docker build -t divesea-nft .
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Run the container
+```bash
+docker run -p 3000:80 divesea-nft
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Access the site
+Visit [http://localhost:3000/DiveSeaNft](http://localhost:3000/DiveSeaNft)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> **Note**: The application uses a `basePath` of `/DiveSeaNft`. The root URL `/` may return 404/403 on Nginx; please ensure you navigate to the correct path.
 
-## Learn More
+## Project Estimate
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Preliminary Evaluation
+- **Estimated time to complete**: ~6 hours
+  - *Breakdown*:
+    - Initial setup & architecture: 1h
+    - Component implementation (Header, Slider, Footer): 2.5h
+    - Responsive adjustments & Logic (Infinite Slider, Mobile Menu): 2h
+    - Docker & Documentation: 0.5h
+- **Delivery Date**: 2026-02-06
