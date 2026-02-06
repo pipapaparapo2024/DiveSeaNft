@@ -5,19 +5,9 @@
   color: white;
   padding: 60px 40px;
   margin-top: 100px;
-  height: 350px; // Desktop default
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  @include tablet {
-    height: 250px;
-  }
 
   @include mobile-small {
-    height: auto;
     padding: 50px 30px 45px;
-    margin-top: 50px; // Reduced spacing to slider on mobile
   }
 
   .content {
@@ -26,7 +16,7 @@
     padding: 0 20px;
     display: flex;
     justify-content: space-between;
-    align-items: center; // Vertically center on desktop
+    align-items: center;
     border-bottom: 1px solid rgba(255,255,255,0.2);
     padding-bottom: 50px;
     margin-bottom: 0;
@@ -38,20 +28,20 @@
     @include mobile-small {
       flex-direction: column;
       gap: 30px;
-      align-items: flex-start; 
-      padding: 0; 
-      padding-bottom: 50px; // Ensure 50px space to the border line
-      margin-bottom: 25px; // 25px from line to copyright
-    }
-
-    .leftColumn {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-
-      @include mobile-small {
-        width: 100%;
-      }
+      align-items: flex-start; // Or center? User image 5 looks left-aligned or centered?
+      // "расстояние между обьектами в footer 30px"
+      // Image 5 shows Logo top-left (or center?), Links below.
+      // Usually mobile footers are left aligned or centered. 
+      // Let's assume left aligned based on "align-items: center" being default flex row.
+      // But in column mode, "align-items: center" centers them horizontally.
+      // The user text says "расстояние всего блока footer имеет отступы по бокам 30px".
+      // Let's keep align-items: flex-start for text alignment, or center if that's standard.
+      // Looking at the image, it looks like a clean stack. Let's try column + flex-start.
+      padding: 0; // Remove inner padding since outer container handles it
+      border-bottom: none; // Often removed on mobile, but let's keep or remove?
+      // User didn't ask to remove border, but "расстояние между обьектами 30px".
+      // If border exists, it separates content from copyright.
+      margin-bottom: 30px; // Adjust margin to copyright
     }
 
     .logo {
@@ -63,15 +53,6 @@
 
       img {
         filter: invert(1);
-      }
-    }
-    
-    .desktopCopyright {
-      color: #666;
-      font-size: 14px;
-      
-      @include mobile-small {
-        display: none;
       }
     }
 
@@ -86,7 +67,7 @@
       @include mobile-small {
         flex-direction: column;
         gap: 30px;
-        align-items: flex-start;
+        align-items: flex-start; // Align left
       }
       
       a {
@@ -100,24 +81,21 @@
     }
   }
 
-  .mobileCopyright {
-    display: none; // Hidden on desktop
+  .copyright {
     color: #666;
     font-size: 14px;
     max-width: 1300px;
     margin: 0 auto;
     padding: 0 20px;
-    text-align: center;
+    text-align: left;
+
+    @include tablet {
+      max-width: 860px;
+    }
 
     @include mobile-small {
-      display: block; // Visible on mobile
       padding: 0;
-      // margin-top handled by content margin-bottom
+      text-align: left; // Or center?
     }
-  }
-
-  // Legacy class removal or update
-  .copyright {
-    display: none;
   }
 }
